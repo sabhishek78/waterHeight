@@ -1,18 +1,18 @@
 function findWaterHeight(blocks,volume){
   blocks.reverse();
   let waterAccumulated=0;
-  let i=0;
+  let currentBlock=0;
   let waterArray=[];
   while(waterAccumulated<=volume){
-    waterAccumulated=waterAccumulated+(blocks[i+1]-blocks[i])*(i+1);
+    waterAccumulated=waterAccumulated+(blocks[currentBlock+1]-blocks[currentBlock])*(currentBlock+1);
     waterArray.push(waterAccumulated);
-    i++;
+    currentBlock++;
   }
-  if(i===1){
+  if(currentBlock===1){
   return parseInt(volume)+blocks[0];
   }
-let waterRemaining=volume-waterArray[i-2];
-return waterRemaining/(i)+blocks[i-1];
+let waterRemaining=volume-waterArray[currentBlock-2];
+return waterRemaining/(currentBlock)+blocks[currentBlock-1];
 }
 console.log(findWaterHeight([200, 150, 100], 100));
 console.log(findWaterHeight([200, 150, 100], 2000));
